@@ -1,0 +1,36 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "NextJS Todo App"
+
+[[workflows.workflow]]
+name = "NextJS Todo App"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx next dev -p 5000"
+waitForPort = 5000
+
+[deployment]
+run = ["sh", "-c", "npm install && npx prisma generate && npx prisma db push && npm run dev"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 39447
+externalPort = 3000
