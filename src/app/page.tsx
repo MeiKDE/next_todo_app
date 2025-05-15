@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Todo, TodoInput, TodoUpdateInput } from "@/types";
+import { Todo, TodoUpdateInput } from "@/types";
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
 
@@ -8,10 +8,6 @@ const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-
-  // Create useStates for Todo Fields
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
 
   // Tailwind CSS styling
   const errorCss =
@@ -48,37 +44,6 @@ const HomePage = () => {
       setError(errorMessage);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  // Create (POST) a new todo
-  const handleCreateTodo = async (todoInput: TodoInput) => {
-    setIsLoading(true);
-    setError("");
-    try {
-      const response = await fetch("/api/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(todoInput),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to create todo");
-      }
-
-      const newTodo = await response.json();
-      console.log("New todo created:", newTodo);
-      setTodos((prev) => [...prev, newTodo]); //prepend to the list
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unexpected error has occurred";
-      console.error("Failed to create todo", err);
-      setError(errorMessage);
-    } finally {
-      setIsLoading(false);
-      setTitle("");
-      setDescription("");
     }
   };
 
@@ -158,23 +123,25 @@ const HomePage = () => {
       )}
 
       <div className="grid md:grid-cols-2 gap-8">
-        <TodoForm
-          handleCreateTodo={handleCreateTodo}
-          setTitle={setTitle}
-          setDescription={setDescription}
-          title={title}
-          description={description}
-          isLoading={isLoading}
-        />
-        <TodoList
-          todos={todos}
-          handleUpdateTodo={handleUpdateTodo}
-          handleDeleteTodo={handleDeleteTodo}
-          setError={setError}
-          setIsLoading={setIsLoading}
-          isLoading={isLoading}
-          error={error}
-        />
+        <div>
+          <TodoForm
+            setTodos={setTodos}
+            setError={setError}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+            error={error}
+          />
+        </div>
+
+        <div>
+          <TodoList
+            todos={todos}
+            handleUpdateTodo={handleUpdateTodo}
+            handleDeleteTodo={handleDeleteTodo}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     </div>
   );

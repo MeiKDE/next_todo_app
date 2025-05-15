@@ -1,24 +1,25 @@
 import { Todo, TodoUpdateInput } from "@/types";
 import TodoItem from "./TodoItem";
+import { useState } from "react";
 interface TodoListProps {
   todos: Todo[];
   handleUpdateTodo: (id: number, data: TodoUpdateInput) => Promise<void>;
   handleDeleteTodo: (id: number) => Promise<void>;
-  setError: React.Dispatch<React.SetStateAction<string>>;
+  // setError: React.Dispatch<React.SetStateAction<string>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
-  error: string;
+  // error: string;
 }
 
 const TodoList = ({
   todos,
   handleUpdateTodo,
   handleDeleteTodo,
-  setError,
+  // setError,
   setIsLoading,
   isLoading,
-  error,
-}: TodoListProps) => {
+}: // error,
+TodoListProps) => {
   console.log("check isLoading value: ", isLoading);
 
   if (isLoading) {
@@ -49,10 +50,8 @@ const TodoList = ({
             todo={todo}
             handleUpdateTodo={handleUpdateTodo}
             handleDeleteTodo={handleDeleteTodo}
-            setError={setError}
             setIsLoading={setIsLoading}
             isLoading={isLoading}
-            error={error}
           />
         ))}
       </div>

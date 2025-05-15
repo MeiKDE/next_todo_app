@@ -9,27 +9,29 @@ interface TodoItemProps {
     todoUpdateInput: TodoUpdateInput
   ) => Promise<void>;
   handleDeleteTodo: (id: number) => Promise<void>;
-  setError: React.Dispatch<React.SetStateAction<string>>;
+  // setError: React.Dispatch<React.SetStateAction<string>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
-  error: string;
+  // error: string;
 }
 
 const TodoItem = ({
   todo,
   handleUpdateTodo,
   handleDeleteTodo,
-  setError,
+  // setError,
   setIsLoading,
   isLoading,
-  error,
-}: TodoItemProps) => {
+}: // error,
+TodoItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [localTitle, setLocalTitle] = useState(todo.title);
   const [localDescription, setLocalDescription] = useState(
     todo.description || ""
   );
+
+  const [error, setError] = useState("");
 
   // Tailwind CSS styling
   const errorCss =
