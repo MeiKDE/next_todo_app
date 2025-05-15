@@ -5,7 +5,6 @@ interface TodoListProps {
   handleUpdateTodo: (id: number, data: TodoUpdateInput) => Promise<void>;
   handleDeleteTodo: (id: number) => Promise<void>;
   setError: React.Dispatch<React.SetStateAction<string>>;
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
   error: string;
@@ -16,7 +15,6 @@ const TodoList = ({
   handleUpdateTodo,
   handleDeleteTodo,
   setError,
-  setTodos,
   setIsLoading,
   isLoading,
   error,
@@ -52,7 +50,6 @@ const TodoList = ({
             handleUpdateTodo={handleUpdateTodo}
             handleDeleteTodo={handleDeleteTodo}
             setError={setError}
-            setTodos={setTodos}
             setIsLoading={setIsLoading}
             isLoading={isLoading}
             error={error}

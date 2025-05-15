@@ -7,7 +7,6 @@ interface TodoFormProps {
   title: string;
   setDescription: (description: string) => void;
   description: string;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
 }
 
@@ -17,7 +16,6 @@ const TodoForm = ({
   title,
   setDescription,
   description,
-  setIsLoading,
   isLoading,
 }: TodoFormProps) => {
   // Tailwind CSS styling

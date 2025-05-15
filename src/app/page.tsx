@@ -164,7 +164,6 @@ const HomePage = () => {
           setDescription={setDescription}
           title={title}
           description={description}
-          setIsLoading={setIsLoading}
           isLoading={isLoading}
         />
         <TodoList
@@ -172,7 +171,6 @@ const HomePage = () => {
           handleUpdateTodo={handleUpdateTodo}
           handleDeleteTodo={handleDeleteTodo}
           setError={setError}
-          setTodos={setTodos}
           setIsLoading={setIsLoading}
           isLoading={isLoading}
           error={error}

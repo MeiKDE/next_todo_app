@@ -10,7 +10,6 @@ interface TodoItemProps {
   ) => Promise<void>;
   handleDeleteTodo: (id: number) => Promise<void>;
   setError: React.Dispatch<React.SetStateAction<string>>;
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
   error: string;
@@ -21,7 +20,6 @@ const TodoItem = ({
   handleUpdateTodo,
   handleDeleteTodo,
   setError,
-  setTodos,
   setIsLoading,
   isLoading,
   error,
@@ -48,12 +46,10 @@ const TodoItem = ({
       {isEditing ? (
         <EditForm
           onUpdate={handleUpdateTodo}
-          onDelete={handleDeleteTodo}
           setError={setError}
           setIsLoading={setIsLoading}
           setIsEditing={setIsEditing}
           isLoading={isLoading}
-          error={error}
           todo={todo}
           setLocalTitle={setLocalTitle}
           setLocalDescription={setLocalDescription}

@@ -3,14 +3,12 @@ import { useState } from "react";
 
 interface EditFormProps {
   onUpdate: (id: number, data: TodoUpdateInput) => Promise<void>;
-  onDelete: (id: number) => Promise<void>;
   setError: React.Dispatch<React.SetStateAction<string>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setLocalTitle: React.Dispatch<React.SetStateAction<string>>;
   setLocalDescription: React.Dispatch<React.SetStateAction<string>>;
   isLoading: boolean;
-  error: string;
   todo: Todo;
   localTitle: string;
   localDescription: string;
@@ -18,14 +16,12 @@ interface EditFormProps {
 
 const EditForm = ({
   onUpdate,
-  onDelete,
   setError,
   setIsLoading,
   setIsEditing,
   setLocalTitle,
   setLocalDescription,
   isLoading,
-  error,
   todo,
   localTitle,
   localDescription,
